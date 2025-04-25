@@ -8,3 +8,10 @@ Demonstration for publishing an interoperable workflow based on the Python Workf
 | environment.yml | Conda environment for software dependencies             |
 | workflow.py     | Python functions representing the nodes of the workflow |
 | workflow.json   | Workflow graph consisting of nodes and edges            |
+
+Additional optional files for the publication of the workflow: 
+
+| File                           | Explanation                              |
+|--------------------------------|------------------------------------------|
+| README.md                      | Readme file to introduce the workflow    |
+| .github/workflows/pipeline.yml | Github Actions to test the workflow      |

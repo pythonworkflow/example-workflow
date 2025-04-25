@@ -40,7 +40,7 @@ jobs:
     - name: Test
       shell: bash -l {0}
       run: |
-        echo -e 'from jobflow.managers.local import run_locally\nfrom python_workflow_definition.jobflow import load_workflow_json\n\n\nif __name__ == "__main__":\n    flow = load_workflow_json(file_name="workflow.json")\n    print(run_locally(flow))' > test_with_jobflow.py .
+        echo -e 'from jobflow.managers.local import run_locally\nfrom python_workflow_definition.jobflow import load_workflow_json\n\n\nif __name__ == "__main__":\n    flow = load_workflow_json(file_name="workflow.json")\n    print(run_locally(flow))' > test_with_jobflow.py
         python test_with_jobflow.py
 
   pyiron:
