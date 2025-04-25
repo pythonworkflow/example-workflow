@@ -1,0 +1,66 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  aiida:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Conda config
+      run: echo -e "channels:\n  - conda-forge\n" > .condarc
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        python-version: "3.12"
+        miniforge-version: latest
+        condarc-file: .condarc
+        environment-file: environment.yml
+    - name: Installation and setup
+      shell: bash -l {0}
+      run: |
+        pip install python-workflow-definition
+        verdi presto --profile-name pwd
+    - name: Tests
+      shell: bash -l {0}
+      run: python .ci_support/aiida.py
+
+  jobflow:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Conda config
+      run: echo -e "channels:\n  - conda-forge\n" > .condarc
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        python-version: "3.12"
+        miniforge-version: latest
+        condarc-file: .condarc
+        environment-file: environment.yml
+    - name: Installation and setup
+      shell: bash -l {0}
+      run: pip install python-workflow-definition
+    - name: Tests
+      shell: bash -l {0}
+      run: python .ci_support/jobflow.py
+
+  pyiron:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Conda config
+      run: echo -e "channels:\n  - conda-forge\n" > .condarc
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        python-version: "3.12"
+        miniforge-version: latest
+        condarc-file: .condarc
+        environment-file: environment.yml
+    - name: Installation and setup
+      shell: bash -l {0}
+      run: pip install python-workflow-definition
+    - name: Tests
+      shell: bash -l {0}
+      run: python .ci_support/pyiron.py
