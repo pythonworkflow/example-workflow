@@ -25,7 +25,9 @@ jobs:
         verdi presto --profile-name pwd
     - name: Tests
       shell: bash -l {0}
-      run: python .ci_support/aiida.py
+      run: |
+        cp .ci_support/aiida.py .
+        python aiida.py
 
   jobflow:
     runs-on: ubuntu-latest
@@ -44,7 +46,9 @@ jobs:
       run: pip install python-workflow-definition
     - name: Tests
       shell: bash -l {0}
-      run: python .ci_support/jobflow.py
+      run: |
+        cp .ci_support/jobflow.py .
+        python jobflow.py
 
   pyiron:
     runs-on: ubuntu-latest
@@ -63,4 +67,6 @@ jobs:
       run: pip install python-workflow-definition
     - name: Tests
       shell: bash -l {0}
-      run: python .ci_support/pyiron.py
+      run: |
+        cp .ci_support/pyiron.py .
+        python pyiron.py
