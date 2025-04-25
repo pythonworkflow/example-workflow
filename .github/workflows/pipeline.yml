@@ -26,8 +26,8 @@ jobs:
     - name: Tests
       shell: bash -l {0}
       run: |
-        cp .ci_support/aiida.py .
-        python aiida.py
+        cp .ci_support/test_aiida.py .
+        python test_aiida.py
 
   jobflow:
     runs-on: ubuntu-latest
@@ -47,8 +47,8 @@ jobs:
     - name: Tests
       shell: bash -l {0}
       run: |
-        cp .ci_support/jobflow.py .
-        python jobflow.py
+        cp .ci_support/test_jobflow.py .
+        python test_jobflow.py
 
   pyiron:
     runs-on: ubuntu-latest
@@ -68,5 +68,5 @@ jobs:
     - name: Tests
       shell: bash -l {0}
       run: |
-        cp .ci_support/pyiron.py .
-        python pyiron.py
+        cp .ci_support/test_pyiron.py .
+        python test_pyiron.py
