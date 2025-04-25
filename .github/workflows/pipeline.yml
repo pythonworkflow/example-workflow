@@ -18,14 +18,13 @@ jobs:
         miniforge-version: latest
         condarc-file: .condarc
         environment-file: environment.yml
-    - name: Installation and setup
+    - name: Test
       shell: bash -l {0}
       run: |
         pip install python-workflow-definition
         verdi presto --profile-name pwd
-    - name: Tests
-      shell: bash -l {0}
-      run: python .ci_support/aiida.py
+        cp .ci_support/test_with_aiida.py .
+        python test_with_aiida.py
 
   jobflow:
     runs-on: ubuntu-latest
@@ -39,12 +38,12 @@ jobs:
         miniforge-version: latest
         condarc-file: .condarc
         environment-file: environment.yml
-    - name: Installation and setup
+    - name: Test
       shell: bash -l {0}
-      run: pip install python-workflow-definition
-    - name: Tests
-      shell: bash -l {0}
-      run: python .ci_support/jobflow.py
+      run: |
+        pip install python-workflow-definition
+        cp .ci_support/test_with_jobflow.py .
+        python test_with_jobflow.py
 
   pyiron:
     runs-on: ubuntu-latest
@@ -58,9 +57,9 @@ jobs:
         miniforge-version: latest
         condarc-file: .condarc
         environment-file: environment.yml
-    - name: Installation and setup
+    - name: Test
       shell: bash -l {0}
-      run: pip install python-workflow-definition
-    - name: Tests
-      shell: bash -l {0}
-      run: python .ci_support/pyiron.py
+      run: |
+        pip install python-workflow-definition
+        cp .ci_support/test_with_pyiron.py .
+        python test_with_pyiron.py
